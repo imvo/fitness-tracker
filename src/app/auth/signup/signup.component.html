@@ -1,5 +1,5 @@
 <section class="signup-form">
-  <form fxLayout="column" fxLayoutAlign="center center" #f="ngForm" (ngSubmit)="onSubmit(f)">
+  <form fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" #f="ngForm" (ngSubmit)="onSubmit(f)">
     <mat-form-field>
       <input #emailInput="ngModel" email ngModel required name="email" type="email" matInput placeholder="Your email">
       <mat-error *ngIf="!emailInput.hasError('required')">Email invalid</mat-error>
@@ -10,7 +10,13 @@
       <mat-hint align="end">{{ pwInput.value?.length }} / 6</mat-hint>
       <mat-error>Min length is 6</mat-error>
     </mat-form-field>
-    <button type="submit" mat-raised-button color="primary">Submit</button>
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="Choose a date" [max]="maxDate" ngModel name="birthDate">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-checkbox ngModel name="conditions">Agree with everything!</mat-checkbox>
+    <button type="submit" [disabled]="f.invalid" mat-raised-button color="primary">Submit</button>
   </form>
 </section>
 
