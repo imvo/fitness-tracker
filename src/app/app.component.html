@@ -1,1 +1,11 @@
-<router-outlet></router-outlet>
+<mat-sidenav-container>
+  <mat-sidenav #sidenav role="navigation">Start</mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button (click)="sidenav.toggle()">Show sidenav</button>
+    </mat-toolbar>
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>
